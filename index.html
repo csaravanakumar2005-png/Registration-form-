@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Registration Form</title>
+
+<style>
+
+/* Animated Gradient Background */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(-45deg, #74ebd5, #acb6e5, #e3f2fd, #ffffff);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    margin: 0;
+}
+
+/* Background animation */
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* Glassmorphism Table */
+table {
+    margin-top: 50px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.6);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    animation: slideUp 0.8s ease;
+}
+
+/* Slide animation */
+@keyframes slideUp {
+    from {opacity: 0; transform: translateY(50px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+th {
+    background: linear-gradient(to right, #2196f3, #21cbf3);
+    color: white;
+    font-size: 22px;
+    padding: 12px;
+    border-radius: 15px 15px 0 0;
+}
+
+/* Floating Labels Container */
+.input-group {
+    position: relative;
+}
+
+/* Inputs */
+input, select, textarea {
+    width: 95%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Bottom line animation */
+input:focus, select:focus, textarea:focus {
+    border-bottom: 2px solid #2196f3;
+    transform: scale(1.03);
+}
+
+/* Glow effect */
+input:focus, textarea:focus {
+    box-shadow: 0 5px 15px rgba(33,150,243,0.3);
+}
+
+/* Buttons */
+input[type="submit"],
+input[type="button"] {
+    padding: 12px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Submit */
+input[type="submit"] {
+    background: linear-gradient(45deg, #4caf50, #81c784);
+    color: white;
+}
+
+/* Reset */
+input[type="button"] {
+    background: linear-gradient(45deg, #f44336, #e57373);
+    color: white;
+}
+
+/* Ripple Effect */
+input[type="submit"]::after,
+input[type="button"]::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.4);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.6s;
+}
+
+input[type="submit"]:active::after,
+input[type="button"]:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+/* Message */
+#msg {
+    margin-top: 20px;
+    font-size: 18px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.5s;
+}
+
+/* Success Animation */
+.show {
+    opacity: 1 !important;
+    transform: translateY(0);
+    text-shadow: 0 0 10px #4caf50;
+    animation: glow 1s infinite alternate;
+}
+
+/* Glow animation */
+@keyframes glow {
+    from {text-shadow: 0 0 5px #4caf50;}
+    to {text-shadow: 0 0 20px #4caf50;}
+}
+
+</style>
+
+<script>
+function submitForm(event) {
+    event.preventDefault();
+
+    let msg = document.getElementById("msg");
+    msg.innerHTML = "🎉 Registration Successful!";
+    msg.classList.add("show");
+}
+
+function resetForm() {
+    document.getElementById("regForm").reset();
+
+    let msg = document.getElementById("msg");
+    msg.innerHTML = "";
+    msg.classList.remove("show");
+}
+</script>
+
+</head>
+
+<body>
+
+<form id="regForm" onsubmit="submitForm(event)">
+<table border="1" cellpadding="10" cellspacing="5" align="center">
+
+<tr>
+<th colspan="2">Student Registration Form</th>
+</tr>
+
+<tr>
+<td>Name</td>
+<td><input type="text" required></td>
+</tr>
+
+<tr>
+<td>Hall Ticket No</td>
+<td><input type="text" required></td>
+</tr>
+
+<tr>
+<td>Branch</td>
+<td>
+<select required>
+<option value="">Select</option>
+<option>CSE</option>
+<option>ECE</option>
+<option>EEE</option>
+<option>MECH</option>
+<option>CIVIL</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td>College Name</td>
+<td><input type="text" required></td>
+</tr>
+
+<tr>
+<td>Mobile Number</td>
+<td><input type="tel" required></td>
+</tr>
+
+<tr>
+<td>Date of Birth</td>
+<td><input type="date" required></td>
+</tr>
+
+<tr>
+<td>Address</td>
+<td><textarea rows="3" required></textarea></td>
+</tr>
+
+<tr>
+<td>Gender</td>
+<td>
+<input type="radio" name="gender" required> Male
+<input type="radio" name="gender"> Female
+</td>
+</tr>
+
+<tr>
+<td>Hobbies</td>
+<td>
+<input type="checkbox"> Reading
+<input type="checkbox"> Sports
+<input type="checkbox"> Music
+<input type="checkbox"> Traveling
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="center">
+<input type="submit" value="Submit">
+<input type="button" value="Restart" onclick="resetForm()">
+</td>
+</tr>
+
+</table>
+</form>
+
+<p id="msg" align="center" style="color:green; font-weight:bold;"></p>
+
+</body>
+</html>
